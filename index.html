@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kanban Inventory System | User Guide</title>
+<style>
+:root{--bg:#f6f7f9;--card:#fff;--text:#111827;--muted:#6b7280;--line:#e5e7eb;--accent:#2563eb;--dark:#0f172a;--ok:#15803d;--warn:#b45309}
+*{box-sizing:border-box}html{scroll-behavior:smooth}
+body{margin:0;font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;background:var(--bg);color:var(--text);line-height:1.55}
+.wrap{max-width:860px;margin:auto;padding:0 18px 48px}
+header{background:linear-gradient(135deg,#0f172a,#1e3a8a);color:white;padding:42px 0 34px;margin-bottom:22px}
+header .wrap{padding-bottom:0}.eyebrow{font-size:.8rem;letter-spacing:.12em;text-transform:uppercase;opacity:.8;margin-bottom:10px}
+h1{font-size:clamp(2rem,7vw,3.4rem);line-height:1.02;margin:0 0 14px}.subtitle{margin:0;color:#dbeafe}
+.nav{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin:22px 0}.nav a{display:block;text-decoration:none;color:var(--text);background:#fff;border:1px solid var(--line);border-radius:14px;padding:14px;font-weight:700}
+section{background:#fff;border:1px solid var(--line);border-radius:18px;padding:22px;margin:16px 0;box-shadow:0 10px 30px rgba(15,23,42,.08)}
+h2{font-size:1.35rem;margin:0 0 14px}h3{font-size:1.02rem;margin:18px 0 8px}
+.quick{display:grid;gap:12px;counter-reset:step}.step{display:grid;grid-template-columns:42px 1fr;gap:12px;padding:13px;border:1px solid var(--line);border-radius:14px;background:#fbfdff}.step:before{counter-increment:step;content:counter(step);width:34px;height:34px;border-radius:10px;display:grid;place-items:center;background:var(--dark);color:#fff;font-weight:800}
+.note{border-left:4px solid var(--accent);background:#eff6ff;padding:12px 14px;border-radius:10px;margin-top:12px}.ok{color:var(--ok);font-weight:700}.warn{color:var(--warn);font-weight:700}
+li{margin:6px 0}.pill{display:inline-block;padding:3px 9px;background:#eef2ff;border-radius:999px;font-size:.82rem;font-weight:700}
+details{border:1px solid var(--line);border-radius:14px;padding:13px 15px;margin:10px 0;background:#fafafa}summary{font-weight:800;cursor:pointer}
+footer{text-align:center;color:var(--muted);font-size:.88rem;padding-top:22px}
+@media(min-width:700px){.nav{grid-template-columns:repeat(4,1fr)}section{padding:28px}}
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <div class="eyebrow">Smart Kanban Inventory Room System</div>
+    <h1>How to Use the Kanban Inventory System</h1>
+    <p class="subtitle">Quick instructions for login, material take/return, stock checking, and admin functions.</p>
+  </div>
+</header>
+<main class="wrap">
+  <nav class="nav">
+    <a href="#quick-start">Quick Start</a>
+    <a href="#take">Take Material</a>
+    <a href="#return">Return Material</a>
+    <a href="#admin">Admin Guide</a>
+  </nav>
+
+  <section id="quick-start">
+    <h2>Quick Start</h2>
+    <div class="quick">
+      <div class="step"><div><strong>Scan your RFID card</strong><br>Tap your registered employee card at the RFID reader.</div></div>
+      <div class="step"><div><strong>Scan the part barcode</strong><br>The system shows the Part ID, description, stock quantity and storage location.</div></div>
+      <div class="step"><div><strong>Enter quantity</strong><br>Enter the number of units you want to take or return.</div></div>
+      <div class="step"><div><strong>Enter PCC / Machine Number</strong><br>Enter the PCC or machine number for the job.</div></div>
+      <div class="step"><div><strong>Press TAKE or RETURN</strong><br>The stock quantity and transaction history update automatically.</div></div>
+    </div>
+    <div class="note">Always confirm the part description and location after scanning.</div>
+  </section>
+
+  <section id="take">
+    <h2>Taking Material</h2>
+    <ol>
+      <li>Scan your RFID card and wait for <strong>Material Retrieval</strong>.</li>
+      <li>Scan the material barcode.</li>
+      <li>Confirm the displayed part information.</li>
+      <li>Enter the required quantity.</li>
+      <li>Enter the PCC / machine number.</li>
+      <li>Press <strong>TAKE</strong>.</li>
+      <li>Check for <span class="ok">TAKE SUCCESSFUL</span>.</li>
+    </ol>
+    <p>The stock quantity is reduced automatically and the transaction is stored in History.</p>
+  </section>
+
+  <section id="return">
+    <h2>Returning Material</h2>
+    <ol>
+      <li>Scan the part barcode.</li>
+      <li>Confirm the correct part is displayed.</li>
+      <li>Enter the quantity being returned.</li>
+      <li>Enter the PCC / machine number.</li>
+      <li>Press <strong>RETURN</strong>.</li>
+      <li>Check for <span class="ok">RETURN SUCCESSFUL</span>.</li>
+    </ol>
+    <p>The returned quantity is added to stock automatically.</p>
+  </section>
+
+  <section id="inventory">
+    <h2>Inventory & History</h2>
+    <h3>Inventory</h3>
+    <p>View current Part ID, barcode, description, quantity, location, minimum quantity and reorder quantity.</p>
+    <h3>History</h3>
+    <p>View and search TAKE, RETURN and ADJUST transactions by user, part, PCC / machine number, type or time.</p>
+  </section>
+
+  <section id="alerts">
+    <h2>Stock Alerts</h2>
+    <ul>
+      <li><strong>IN STOCK:</strong> Quantity is above the minimum level.</li>
+      <li><strong>LOW STOCK:</strong> Quantity is at or below the minimum level.</li>
+      <li><strong>OUT OF STOCK:</strong> Quantity is zero or below.</li>
+    </ul>
+    <p>Low-stock and out-of-stock conditions can trigger email notifications.</p>
+  </section>
+
+  <section id="admin">
+    <h2>Admin Guide</h2>
+    <p>Admin functions are only available to users with the <strong>admin</strong> role.</p>
+    <details><summary>Add / Edit Inventory</summary><p>Add new parts or edit barcode, description, location, minimum quantity and reorder quantity.</p></details>
+    <details><summary>Stock Adjustment</summary><p>Enter the barcode or Part ID, new quantity and a reason. The adjustment is recorded in History.</p></details>
+    <details><summary>Bulk CSV Import</summary><p>Upload a CSV using <code>part_id,description,location</code>. Imported barcode values are automatically set to the Part ID.</p></details>
+    <details><summary>RFID User Management</summary><p>Register RFID users, activate/deactivate access and assign worker/admin roles.</p></details>
+  </section>
+
+  <section id="help">
+    <h2>If Something Goes Wrong</h2>
+    <ul>
+      <li><strong>RFID not accepted:</strong> Ask an admin to confirm the card is registered and active.</li>
+      <li><strong>Barcode not found:</strong> Check the label and confirm the part exists in inventory.</li>
+      <li><strong>No part selected:</strong> Scan the part barcode again.</li>
+      <li><strong>Quantity error:</strong> Enter a positive whole number.</li>
+      <li><strong>PCC required:</strong> Enter a PCC / machine number before completing the transaction.</li>
+    </ul>
+    <div class="note"><strong>Logout when finished.</strong> This returns the system to RFID login and protects dashboard access.</div>
+  </section>
+
+  <footer>Smart Kanban Inventory Room System • User Guide</footer>
+</main>
+</body>
+</html>
